@@ -148,11 +148,11 @@ class UpdatePatientSerializer(serializers.ModelSerializer):
 
 class UpdateDoctorSerializer(serializers.ModelSerializer):
     first_name = serializers.CharField(source='doctor_profile.first_name')
-    last_name = serializers.CharField(source='doctor_profile.first_name')
-    bio = serializers.CharField(source='doctor_profile.first_name')
-    age = serializers.CharField(source='doctor_profile.first_name')
-    credentials = serializers.CharField(source='doctor_profile.first_name')
-    education = serializers.CharField(source='doctor_profile.first_name')
+    last_name = serializers.CharField(source='doctor_profile.last_name')
+    bio = serializers.CharField(source='doctor_profile.bio')
+    age = serializers.CharField(source='doctor_profile.age')
+    credentials = serializers.CharField(source='doctor_profile.credentials')
+    education = serializers.CharField(source='doctor_profile.education')
 
     
     class Meta:
