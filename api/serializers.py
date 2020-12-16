@@ -154,7 +154,7 @@ class UpdateDoctorSerializer(serializers.ModelSerializer):
     credentials = serializers.CharField(source='doctor_profile.credentials')
     education = serializers.CharField(source='doctor_profile.education')
 
-    
+    # test commit
     class Meta:
         model = User
         fields = ['id', 'email', 'first_name',
