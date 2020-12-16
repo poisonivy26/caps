@@ -24,8 +24,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     uid = models.UUIDField(unique=True, editable=False, default=uuid.uuid4, verbose_name='Public identifier')
     email = models.EmailField(unique=True)
-    first_name = models.CharField(max_length=30, blank=True)
-    last_name = models.CharField(max_length=50, blank=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
     is_deleted = models.BooleanField(default=False)
@@ -49,22 +47,26 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = 'users'
 
 class Patient(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,
+    user = models.OneToOneField(User ,on_delete=models.CASCADE,
                                                         null=True,
-                                                        related_name='patient')
+                                                        related_name='patient_profile')
+    first_name = models.CharField(max_length=30, blank=True)
+    last_name = models.CharField(max_length=50, blank=True)
     age = models.CharField(max_length=3)
     bio = models.CharField(max_length=100)
 
     
     def __str__(self):
-        return self.user.username
+        return self.user.email
 
 
 
 class Doctor(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,
                                                         null=True,
-                                                        related_name='doctor')
+                                                        related_name='doctor_profile')
+    first_name = models.CharField(max_length=30, blank=True)
+    last_name = models.CharField(max_length=50, blank=True)
     age = models.CharField(max_length=3)
     bio = models.CharField(max_length=100)
     credentials = models.CharField(max_length=20, blank=True, default="M.D")
@@ -72,4 +74,4 @@ class Doctor(models.Model):
 
 
     def __str__(self):
-        return self.user.username
+        return self.user.email

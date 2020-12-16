@@ -3,12 +3,16 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
+from rest_framework import generics
+
 from .serializers import (
     UserRegistrationSerializer,
     UserLoginSerializer,
     UserListSerializer,
     PatientRegistrationSerializer,
-    DoctorRegistrationSerializer
+    DoctorRegistrationSerializer,
+    UpdatePatientSerializer,
+    UpdateDoctorSerializer
     
 )
 
@@ -93,6 +97,7 @@ class UserLoginView(APIView):
 
         if valid:
             status_code = status.HTTP_200_OK
+            user = request.user
 
             response = {
                 'success': True,
@@ -101,8 +106,9 @@ class UserLoginView(APIView):
                 'access': serializer.data['access'],
                 'refresh': serializer.data['refresh'],
                 'authenticatedUser': {
+                    'id': serializer.data['id'],
                     'email': serializer.data['email'],
-                    'role': serializer.data['role']
+                    'role': serializer.data['role'],
                 }
             }
 
@@ -134,3 +140,17 @@ class UserListView(APIView):
 
             }
             return Response(response, status=status.HTTP_200_OK)
+
+
+class UpdatePatientProfileView(generics.UpdateAPIView):
+
+    queryset = User.objects.all()
+    permission_classes = (IsAuthenticated,)
+    serializer_class = UpdatePatientSerializer
+
+
+class UpdateDoctorProfileView(generics.UpdateAPIView):
+
+    queryset = User.objects.all()
+    permission_classes = (IsAuthenticated,)
+    serializer_class = UpdateDoctorProfileView
