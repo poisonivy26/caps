@@ -52,7 +52,7 @@ class Patient(models.Model):
                                                         related_name='patient_profile')
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=50, blank=True)
-    age = models.IntegerField(max_length=3)
+    age = models.IntegerField()
     bio = models.CharField(max_length=100)
 
     
@@ -67,7 +67,7 @@ class Doctor(models.Model):
                                                         related_name='doctor_profile')
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=50, blank=True)
-    age = models.IntegerField(max_length=3)
+    age = models.IntegerField()
     bio = models.CharField(max_length=100)
     credentials = models.CharField(max_length=20, blank=True, default="M.D")
     education = models.CharField(max_length=20)

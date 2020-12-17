@@ -32,6 +32,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
+    'chat',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,6 +48,10 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
+# channels
+ASGI_APPLICATION = 'backend_api.asgi.application'
+
+# custom user model api.models.py
 AUTH_USER_MODEL = 'api.User'
 
 # App the REST framework url conf
