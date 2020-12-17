@@ -153,4 +153,4 @@ class UpdateDoctorProfileView(generics.UpdateAPIView):
 
     queryset = User.objects.all()
     permission_classes = (IsAuthenticated,)
-    serializer_class = UpdateDoctorProfileView
+    serializer_class = UpdateDoctorSerializer
