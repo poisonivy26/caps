@@ -74,7 +74,7 @@ class DoctorRegistrationSerializer(serializers.ModelSerializer):
 
 # serializer user login
 class UserLoginSerializer(serializers.Serializer):
-    id = serializers.IntegerField(required=False)
+    # id = serializers.IntegerField(required=False)
     email = serializers.EmailField()
     password = serializers.CharField(max_length=128, write_only=True)
     access = serializers.CharField(read_only=True)
@@ -107,7 +107,7 @@ class UserLoginSerializer(serializers.Serializer):
                 'refresh': refresh_token,
                 'email': user.email,
                 'role': user.role,
-                'id': user.id
+                # 'id': user.id
             }
 
             return validation
