@@ -154,3 +154,12 @@ class UpdateDoctorProfileView(generics.UpdateAPIView):
     queryset = User.objects.all()
     permission_classes = (IsAuthenticated,)
     serializer_class = UpdateDoctorSerializer
+    
+
+# sample test view
+class HelloView(APIView):
+    permission_classes = (IsAuthenticated, )
+    
+    def get(self, request):
+        content = {'message': 'Request granted po hello'}
+        return Response(content)
