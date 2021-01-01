@@ -34,7 +34,6 @@ class PatientRegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
-            'id',
             'email',
             'password',
             'patient_profile',
@@ -42,7 +41,8 @@ class PatientRegistrationSerializer(serializers.ModelSerializer):
         )
 
     def create(self, validated_data):
-        auth_user = User.objects.create_user(email=validated_data['email'],
+        auth_user = User.objects.create_user(
+                                            email=validated_data['email'],
                                             password=validated_data['password'],
                                             )
         auth_user.role=2
