@@ -15,6 +15,9 @@ import DoctorList from './screens/Patient/DoctorList';
 import DoctorInformation from './screens/Patient/DoctorInformation';
 import CreateAppointment from './screens/Patient/CreateAppointment';
 import Landing from './screens/Patient/Landing';
+import Dashboard from './screens/Dashboard';
+import Message from './screens/Patient/Messages';
+import Prescriptions from './screens/Patient/Prescriptions';
 
 const RootStack = createStackNavigator();
 
@@ -24,7 +27,13 @@ function App() {
     <NavigationContainer>
     <RootStack.Navigator>
       <RootStack.Screen name="SulongPinoy" component={PatientLogin} />
-      <RootStack.Screen name="PatientRegistrationScreen" component={PatientRegister} />
+      <RootStack.Screen name="PatientRegistrationScreen" component={PatientRegister} /> 
+
+      <RootStack.Screen name="PatientDashboard" component={Dashboard} />
+      <RootStack.Screen name="Find Doctor" component={FindDoctor} />
+      <RootStack.Screen name="Create Appointment" component={CreateAppointment} />
+      <RootStack.Screen name="Prescriptions" component={Prescriptions} />
+      <RootStack.Screen name="Messaging" component={Message}/>
     </RootStack.Navigator>
     </NavigationContainer>
   );
