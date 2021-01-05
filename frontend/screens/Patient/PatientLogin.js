@@ -41,7 +41,7 @@ const PatientLogin = ({navigation}) => {
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            navigation.navigate('PatientDashboard')
+            navigation.navigate('Dashboard Screen')
             console.log('pressed');
           }}>
           <Text style={styles.buttonText}> Sign In </Text>
