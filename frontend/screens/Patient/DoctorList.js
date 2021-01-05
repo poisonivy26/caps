@@ -62,11 +62,11 @@ const styles = StyleSheet.create({
   },
   item: {
     padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
+    marginVertical: 4,
+    marginHorizontal: 8,
   },
   title: {
-    fontSize: 32,
+    fontSize: 25,
   },
   image: {
     width: 75,

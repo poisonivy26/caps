@@ -62,7 +62,7 @@ const PatientLogin = ({navigation}) => {
         <Text>
 
           Are you a Doctor?
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => {alert('Doctor Navigation To do')}}>
             <Text style={styles.links}>| Click Here</Text>
           </TouchableOpacity>
         </Text>

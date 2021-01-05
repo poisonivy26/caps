@@ -2,6 +2,14 @@ import React from 'react';
 import {TouchableOpacity, Image, StyleSheet, View, Text} from 'react-native';
 
 const DoctorInformation = () => {
+
+  const handleOnPressInformation = () => {
+    alert('Doctor Personal Information')
+  }
+
+  const handleOnPressWorkingAddress = () => {
+    alert('Doctor Personal Information')
+  }
   return (
     <View style={styles.container}>
       <Image
@@ -10,10 +18,10 @@ const DoctorInformation = () => {
       />
       <Text> Dr. Juan Dela Cruz </Text>
 
-      <TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={handleOnPressInformation}>
         <Text> Personal Information </Text>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={handleOnPressWorkingAddress}>
         <Text> Working Address </Text>
       </TouchableOpacity>
     </View>
@@ -29,6 +37,13 @@ const styles = StyleSheet.create({
   image: {
     width: 75,
     height: 75,
+  },
+  button: {
+    borderWidth: 1,
+    borderColor: 'black',
+    width: 250,
+    paddingBottom: 5,
+    marginBottom: 5,
   },
 });
 

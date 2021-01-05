@@ -51,7 +51,7 @@ function App() {
           name="Dashboard Screen"
           component={HomeDrawer}
           options={{
-            title: 'Product',
+            title: 'Patient Profile',
             drawerIcon: ({focused, size}) => (
               <Image
                 source={require('./icons/doctor.png')}
