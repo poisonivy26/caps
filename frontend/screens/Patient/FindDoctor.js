@@ -3,7 +3,7 @@ import {Picker} from '@react-native-picker/picker';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 
 
-const FindDoctor = () => {
+const FindDoctor = ( {navigation}) => {
   const [selectDoctor, setSelectedDoctor] = useState('');
 
   const handleValueChange = (itemValue, itemIndex) => {
@@ -12,7 +12,7 @@ const FindDoctor = () => {
   };
 
   const handleOnPress = () => {
-      console.log('Pressed search button')
+      navigation.navigate('Doctor List')
   }
 
   return (

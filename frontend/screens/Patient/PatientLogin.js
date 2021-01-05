@@ -51,7 +51,7 @@ const PatientLogin = ({navigation}) => {
       {/* Links */}
 
         <Text>
-          {' '}
+ 
           Dont have an account?
           <TouchableOpacity
             onPress={() => navigation.navigate('PatientRegistrationScreen')}>
@@ -60,7 +60,7 @@ const PatientLogin = ({navigation}) => {
         </Text>
 
         <Text>
-          {' '}
+
           Are you a Doctor?
           <TouchableOpacity>
             <Text style={styles.links}>| Click Here</Text>

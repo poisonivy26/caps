@@ -10,7 +10,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 // Patient Imports
 import PatientLogin from './screens/Patient/PatientLogin';
 import PatientRegister from './screens/Patient/PatientRegister';
-import FindDoctor from './screens/Patient/FindDoctor';
 import DoctorList from './screens/Patient/DoctorList';
 import DoctorInformation from './screens/Patient/DoctorInformation';
 import CreateAppointment from './screens/Patient/CreateAppointment';
@@ -18,6 +17,12 @@ import Landing from './screens/Patient/Landing';
 import Dashboard from './screens/Dashboard';
 import Message from './screens/Patient/Messages';
 import Prescriptions from './screens/Patient/Prescriptions';
+import FindDoctor from './screens/Patient/FindDoctor';
+import AppointmentDatePicker from './screens/Patient/AppointmentDatePicker';
+import AppointmentSummary from './screens/Patient/AppointmentSummary';
+
+
+import PrescriptionDetails from './screens/Patient/PrescriptionDetails';
 
 const RootStack = createStackNavigator();
 
@@ -34,6 +39,18 @@ function App() {
       <RootStack.Screen name="Create Appointment" component={CreateAppointment} />
       <RootStack.Screen name="Prescriptions" component={Prescriptions} />
       <RootStack.Screen name="Messaging" component={Message}/>
+
+      <RootStack.Screen name="Find a Doctor" component={FindDoctor}/>
+      <RootStack.Screen name="Doctor List" component={DoctorList}/>
+      <RootStack.Screen name="Doctor Information" component={DoctorInformation}/>
+      <RootStack.Screen name="Appointment Date Picker" component={AppointmentDatePicker}/>
+      <RootStack.Screen name="Appointment Summary" component={AppointmentSummary}/>
+
+
+      <RootStack.Screen name="Prescription List" component={Prescriptions}/>
+      <RootStack.Screen name="Prescription Details" component={PrescriptionDetails}/>
+
+
     </RootStack.Navigator>
     </NavigationContainer>
   );
