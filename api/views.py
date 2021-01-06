@@ -162,3 +162,14 @@ class HelloView(APIView):
     def get(self, request):
         content = {'message': 'Request granted po hello'}
         return Response(content)
+    
+    
+# get user api
+class UserAPI(generics.RetrieveAPIView):
+    permission_classes= [
+        IsAuthenticated,
+    ]
+    serializer_class = PatientRegistrationSerializer
+    
+    def get_object(self):
+        return self.request.user

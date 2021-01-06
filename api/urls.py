@@ -10,6 +10,7 @@ from .views import (
     UpdatePatientProfileView,
     UpdateDoctorProfileView,
     HelloView,
+    UserAPI,
 )
 
 urlpatterns = [
@@ -30,4 +31,8 @@ urlpatterns = [
 
     # test view for authentication
     path('hello/', HelloView.as_view(), name='hello'),
+    
+    
+    # get user
+    path('user/', UserAPI.as_view(), name='user'),
 ]

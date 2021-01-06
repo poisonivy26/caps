@@ -23,6 +23,8 @@ import AppointmentSummary from './screens/Patient/AppointmentSummary';
 import PrescriptionDetails from './screens/Patient/PrescriptionDetails';
 
 import PatientProfile from './screens/Patient/PatientProfile';
+import PatientRecentConsultations from './screens/Patient/PatientRecentConsultations';
+import InsuranceCards from './screens/Patient/InsuranceCards';
 
 const RootStack = createStackNavigator();
 
@@ -91,6 +93,13 @@ function App() {
           name="Prescription Details"
           component={PrescriptionDetails}
         />
+
+        <RootStack.Screen
+          name="Recent Consultations"
+          component={PatientRecentConsultations}
+        />
+
+        <RootStack.Screen name="Insurance" component={InsuranceCards} />
       </RootStack.Navigator>
     </NavigationContainer>
   );

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {Component} from 'react';
+import axios from 'axios';
 import {
   StyleSheet,
   View,
@@ -9,49 +10,78 @@ import {
 } from 'react-native';
 import globalStyles from '../../styles/GlobalStyle';
 
-const PatientLogin = ({navigation}) => {
-  const [email, onChangeEmail] = React.useState('Email');
-  const [password, onChangePassword] = React.useState('Password');
-  return (
-    <View style={styles.container}>
-      <View>
-        <Text style={styles.text}>Sign In</Text>
-      </View>
+import deviceStorage from '../../components/deviceStorage';
 
-      <View style={styles.email}>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => onChangeEmail(text)}
-          placeholder="Email"
-        />
-      </View>
+class PatientLogin extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {email: '', password: ''};
 
-      <View style={styles.password}>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => onChangePassword(text)}
-          placeholder="Password"
-          secureTextEntry={true}
-        />
-      </View>
 
-      {/* sign in button */}
 
-      <View style={styles.signIn}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            navigation.navigate('Dashboard Screen')
-            console.log('pressed');
-          }}>
-          <Text style={styles.buttonText}> Sign In </Text>
-        </TouchableOpacity>
-      </View>
+    this.loginUser = this.loginUser.bind(this);
+  }
 
-      {/* Links */}
+  login = () => {
+    alert(this.state.email + ' ' + this.state.password);
+  };
+
+  loginUser ()  {
+
+    const { email, password } = this.state;
+
+    axios.post('http://10.0.2.2:8000/api/auth/login/', {
+      email: email,
+      password: password,
+    }, {
+      'headers': {
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(function (response) {
+      console.log(response.data.authenticatedUser.email);
+      // deviceStorage.saveItem('access_token', response.data.access)
+    })
+    .catch((error) => console.log( error.response.request._response ) );;
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.text}>Sign In</Text>
+        </View>
+
+        <View style={styles.email}>
+          <TextInput
+            style={styles.input}
+            value={this.state.text}
+            onChangeText={(text) => this.setState({email: text})}
+            placeholder="Email"
+          />
+        </View>
+
+        <View style={styles.password}>
+          <TextInput
+            style={styles.input}
+            value={this.state.text}
+            onChangeText={(text) => this.setState({password: text})}
+            placeholder="Password"
+            secureTextEntry={true}
+          />
+        </View>
+
+        {/* sign in button */}
+
+        <View style={styles.signIn}>
+          <TouchableOpacity style={styles.button} onPress={this.loginUser}>
+            <Text style={styles.buttonText}> Sign In </Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* Links */}
 
         <Text>
- 
           Dont have an account?
           <TouchableOpacity
             onPress={() => navigation.navigate('PatientRegistrationScreen')}>
@@ -60,16 +90,18 @@ const PatientLogin = ({navigation}) => {
         </Text>
 
         <Text>
-
           Are you a Doctor?
-          <TouchableOpacity onPress={() => {alert('Doctor Navigation To do')}}>
+          <TouchableOpacity
+            onPress={() => {
+              alert('Doctor Navigation To do');
+            }}>
             <Text style={styles.links}>| Click Here</Text>
           </TouchableOpacity>
         </Text>
-
-    </View>
-  );
-};
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {

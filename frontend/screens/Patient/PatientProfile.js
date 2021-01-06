@@ -1,7 +1,15 @@
 import React from 'react';
 import {Image, View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 
-const PatientProfile = () => {
+const PatientProfile = ({navigation}) => {
+
+  const onPressRecentConsultations = () => {
+    navigation.navigate('Recent Consultations');
+  }
+
+  const onPressInsurance = () => {
+    navigation.navigate('Insurance');
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.header}> User Profile Profile</Text>
@@ -23,11 +31,11 @@ const PatientProfile = () => {
       {/* Buttons */}
 
       <View>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={onPressRecentConsultations}>
           <Text>Recent Consultations</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={onPressInsurance}>
         <Text>Insurance Cards</Text>
         </TouchableOpacity>
       </View>
@@ -56,7 +64,7 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   buttonText: {
-    color: 'white',
+    color: 'white', 
   },
 });
 

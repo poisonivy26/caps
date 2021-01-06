@@ -54,16 +54,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'space-around',
-    flexDirection: 'column',
+    flexDirection: 'row',
   },
   image: {
     width: 75,
     height: 75,
+    borderRadius: 75 / 2,
+    overflow: "hidden",
+    borderWidth: 3,
+
   },
   boxOne: {
     padding: 10,
-    borderColor: 'green',
-    backgroundColor: 'coral',
+    borderColor: '#42f5bc',
     borderRadius: 20,
     borderWidth: 1.5,
     width: 100,
@@ -72,32 +75,29 @@ const styles = StyleSheet.create({
 
   boxTwo: {
     padding: 10,
-    borderColor: 'green',
+    borderColor: '#42f5bc',
     borderRadius: 20,
     borderWidth: 1.5,
     width: 100,
     height: 100,
-    backgroundColor: 'gold',
   },
 
   boxThree: {
     padding: 10,
-    borderColor: 'green',
+    borderColor: '#42f5bc',
     width: 100,
     borderRadius: 20,
     borderWidth: 1.5,
     height: 100,
-    backgroundColor: 'red',
   },
 
   boxFour: {
     padding: 10,
-    borderColor: 'green',
+    borderColor: '#42f5bc',
     width: 100,
     borderRadius: 20,
     borderWidth: 1.5,
     height: 100,
-    backgroundColor: 'blue',
   },
 
   text: {
