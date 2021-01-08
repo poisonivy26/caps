@@ -40,7 +40,7 @@ class PatientLogin extends Component {
     })
     .then(function (response) {
       console.log(response.data.authenticatedUser.email);
-      // deviceStorage.saveItem('access_token', response.data.access)
+      deviceStorage.saveItem('access_token', response.data.access)
     })
     .catch((error) => console.log( error.response.request._response ) );;
   }
@@ -84,7 +84,7 @@ class PatientLogin extends Component {
         <Text>
           Dont have an account?
           <TouchableOpacity
-            onPress={() => navigation.navigate('PatientRegistrationScreen')}>
+            onPress={() => this.props.navigation.navigate('Sign up')}>
             <Text style={styles.links}>| Create Account</Text>
           </TouchableOpacity>
         </Text>

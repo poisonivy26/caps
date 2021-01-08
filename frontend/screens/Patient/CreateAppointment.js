@@ -3,7 +3,7 @@ import {Picker} from '@react-native-picker/picker';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 
 
-const FindDoctor = ( {navigation}) => {
+const CreateAppointment = ( {navigation}) => {
   const [selectDoctor, setSelectedDoctor] = useState('');
 
   const handleValueChange = (itemValue, itemIndex) => {
@@ -85,4 +85,4 @@ const styles = StyleSheet.create({
       },
 })
 
-export default FindDoctor;
+export default CreateAppointment;

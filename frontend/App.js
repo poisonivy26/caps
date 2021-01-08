@@ -1,105 +1,176 @@
 // In App.js in a new project
 
 import React from 'react';
-import {View, Text, Button, TextInput, Safe} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import {
+  TouchableOpacity,
+  View,
+  Text,
+  Button,
+  TextInput,
+  Safe,
+} from 'react-native';
+import {
+  NavigationContainer,
+  DrawerActions,
+  useNavigation,
+} from '@react-navigation/native';
+import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
 // Patient Imports
 import PatientLogin from './screens/Patient/PatientLogin';
 import PatientRegister from './screens/Patient/PatientRegister';
+
+// Find Doctor Stacks
 import DoctorList from './screens/Patient/DoctorList';
 import DoctorInformation from './screens/Patient/DoctorInformation';
-import CreateAppointment from './screens/Patient/CreateAppointment';
+
 import Landing from './screens/Patient/Landing';
 import Dashboard from './screens/Dashboard';
-import Message from './screens/Patient/Messages';
-import Prescriptions from './screens/Patient/Prescriptions';
+
 import FindDoctor from './screens/Patient/FindDoctor';
+
+// Appointments Imports
+import CreateAppointment from './screens/Patient/CreateAppointment';
 import AppointmentDatePicker from './screens/Patient/AppointmentDatePicker';
 import AppointmentSummary from './screens/Patient/AppointmentSummary';
 
+// Prescription Imports
+import Prescriptions from './screens/Patient/Prescriptions';
 import PrescriptionDetails from './screens/Patient/PrescriptionDetails';
 
 import PatientProfile from './screens/Patient/PatientProfile';
 import PatientRecentConsultations from './screens/Patient/PatientRecentConsultations';
 import InsuranceCards from './screens/Patient/InsuranceCards';
 
+// Messages imports
+import Message from './screens/Patient/Messages';
+
 const RootStack = createStackNavigator();
 
-const Drawer = createDrawerNavigator();
+const FindDoctorStack = createStackNavigator();
 
-const HomeDrawer = () => {
+const FindDoctorScreen = ({navigation}) => {
   return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Dashboard Screen" component={Dashboard} />
-      <Drawer.Screen name="Patient Profile" component={PatientProfile} />
-    </Drawer.Navigator>
+    <FindDoctorStack.Navigator>
+      <FindDoctorStack.Screen name="Find Doctor" component={FindDoctor} />
+      <FindDoctorStack.Screen name="Doctor List" component={DoctorList} />
+      <FindDoctorStack.Screen
+        name="Doctor Information"
+        component={DoctorInformation}
+      />
+    </FindDoctorStack.Navigator>
   );
 };
 
-function App() {
+const AppointmentStack = createStackNavigator();
+
+const AppointmentScreen = () => {
+  return (
+    <AppointmentStack.Navigator>
+      <AppointmentStack.Screen
+        name="Create Appointment"
+        component={CreateAppointment}
+      />
+      <AppointmentStack.Screen
+        name="Appointment Date Picker"
+        component={AppointmentDatePicker}
+      />
+
+      <AppointmentStack.Screen
+        name="Appointment Summary"
+        component={AppointmentSummary}
+      />
+    </AppointmentStack.Navigator>
+  );
+};
+
+const PrescriptionStack = createStackNavigator();
+
+const PrescriptionScreen = () => {
+  return (
+    <PrescriptionStack.Navigator>
+      <PrescriptionStack.Screen
+        name="Prescriptions"
+        component={Prescriptions}
+      />
+      <PrescriptionStack.Screen
+        name="Prescription Details"
+        component={PrescriptionDetails}
+      />
+    </PrescriptionStack.Navigator>
+  );
+};
+
+const MessageStack = createStackNavigator();
+const MessageScreen = () => {
+  return (
+    <MessageStack.Navigator>
+      <MessageStack.Screen name="Messaging" component={Message} />
+    </MessageStack.Navigator>
+  );
+};
+
+const DashboardStack = createDrawerNavigator();
+
+const DashboardScreen = () => {
+  return (
+    <DashboardStack.Navigator>
+      <DashboardStack.Screen name="Dashboard" component={Dashboard} />
+      {/* <DashboardScreen.Screen name="FindDoctors" component={FindDoctorScreen}/> */}
+    </DashboardStack.Navigator>
+  );
+};
+
+function App({navigation}) {
+  const isLoggedIn = false;
   return (
     <NavigationContainer>
       <RootStack.Navigator>
-        <RootStack.Screen name="SulongPinoy" component={PatientLogin} />
+        {isLoggedIn ? (
+          <>
+            <RootStack.Screen name="Sign in" component={PatientLogin} />
+            <RootStack.Screen name="Sign up" component={PatientRegister} />
+          </>
+        ) : (
+          <RootStack.Screen
+            name="Dashboard"
+            component={DashboardScreen}
+            options={
+              {
+                // headerShown: false,
+              }
+            }
+          />
+        )}
         <RootStack.Screen
-          name="PatientRegistrationScreen"
-          component={PatientRegister}
-        />
-
-        <RootStack.Screen
-          name="Dashboard Screen"
-          component={HomeDrawer}
+          name="Find Doctor"
+          component={FindDoctorScreen}
           options={{
-            title: 'Patient Profile',
-            drawerIcon: ({focused, size}) => (
-              <Image
-                source={require('./icons/doctor.png')}
-                style={[
-                  focused ? styles.drawerActive : styles.drawerInActive,
-                  {height: size, width: size},
-                ]}
-              />
-            ),
+            headerShown: false,
           }}
         />
-        <RootStack.Screen name="Find Doctor" component={FindDoctor} />
         <RootStack.Screen
           name="Create Appointment"
-          component={CreateAppointment}
-        />
-        <RootStack.Screen name="Prescriptions" component={Prescriptions} />
-        <RootStack.Screen name="Messaging" component={Message} />
-
-        <RootStack.Screen name="Find a Doctor" component={FindDoctor} />
-        <RootStack.Screen name="Doctor List" component={DoctorList} />
-        <RootStack.Screen
-          name="Doctor Information"
-          component={DoctorInformation}
+          component={AppointmentScreen}
+          options={{
+            headerShown: false,
+          }}
         />
         <RootStack.Screen
-          name="Appointment Date Picker"
-          component={AppointmentDatePicker}
+          name="Prescriptions"
+          component={PrescriptionScreen}
+          options={{
+            headerShown: false,
+          }}
         />
-        <RootStack.Screen
-          name="Appointment Summary"
-          component={AppointmentSummary}
+          <RootStack.Screen
+          name="Messaging"
+          component={MessageScreen}
+          options={{
+            headerShown: false,
+          }}
         />
-
-        <RootStack.Screen name="Prescription List" component={Prescriptions} />
-        <RootStack.Screen
-          name="Prescription Details"
-          component={PrescriptionDetails}
-        />
-
-        <RootStack.Screen
-          name="Recent Consultations"
-          component={PatientRecentConsultations}
-        />
-
-        <RootStack.Screen name="Insurance" component={InsuranceCards} />
       </RootStack.Navigator>
     </NavigationContainer>
   );
