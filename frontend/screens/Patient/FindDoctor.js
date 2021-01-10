@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Picker} from '@react-native-picker/picker';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import RNSecureKeyStore, {ACCESSIBLE} from "react-native-secure-key-store";
 
 
 const FindDoctor = ( {navigation}) => {
@@ -12,7 +13,20 @@ const FindDoctor = ( {navigation}) => {
   };
 
   const handleOnPress = () => {
-      navigation.navigate('Doctor List')
+    RNSecureKeyStore.get("access_token")
+    .then((res) => {
+        console.log("access" + res);
+    }, (err) => {
+        console.log(err);
+    });
+
+    RNSecureKeyStore.get("refresh_token")
+    .then((res) => {
+        console.log("refresh" + res);
+    }, (err) => {
+        console.log(err);
+    });
+ 
   }
 
   return (

@@ -1,6 +1,6 @@
 // In App.js in a new project
 
-import React from 'react';
+import React, {Component} from 'react';
 import {
   TouchableOpacity,
   View,
@@ -45,6 +45,10 @@ import InsuranceCards from './screens/Patient/InsuranceCards';
 
 // Messages imports
 import Message from './screens/Patient/Messages';
+
+//storing keys
+import RNSecureKeyStore, {ACCESSIBLE} from "react-native-secure-key-store";
+
 
 const RootStack = createStackNavigator();
 
@@ -122,17 +126,31 @@ const DashboardScreen = () => {
   );
 };
 
-function App({navigation}) {
-  const isLoggedIn = false;
+export default class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      jwt: null,
+      loading: true,
+      isLoggedIn: true,
+      isLoading: true,
+      
+    }
+  }
+
+
+  render(){
+
+ 
   return (
+
+  
+    
     <NavigationContainer>
       <RootStack.Navigator>
-        {isLoggedIn ? (
+        {this.state.isLoggedIn ? (
           <>
-            <RootStack.Screen name="Sign in" component={PatientLogin} />
-            <RootStack.Screen name="Sign up" component={PatientRegister} />
-          </>
-        ) : (
+
           <RootStack.Screen
             name="Dashboard"
             component={DashboardScreen}
@@ -142,6 +160,12 @@ function App({navigation}) {
               }
             }
           />
+          </>
+        ) : (
+          <>
+          <RootStack.Screen name="Sign in" component={PatientLogin} />
+            <RootStack.Screen name="Sign up" component={PatientRegister} />
+            </>
         )}
         <RootStack.Screen
           name="Find Doctor"
@@ -175,5 +199,6 @@ function App({navigation}) {
     </NavigationContainer>
   );
 }
+}
 
-export default App;
+
