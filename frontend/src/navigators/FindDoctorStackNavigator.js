@@ -10,7 +10,7 @@ import FindDoctor from './screens/Patient/FindDoctor';
 
 const FindDoctorStack = createStackNavigator();
 
-export function FindDoctorScreen () {
+export function FindDoctorNavigator () {
   return (
     <FindDoctorStack.Navigator>
       <FindDoctorStack.Screen name="Find Doctor" component={FindDoctor} />

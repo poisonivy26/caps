@@ -19,9 +19,17 @@ import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
 
 
 
+// navigator imports
+import AppointmentNavigator from './src/navigators/AppointmentStackNavigator';
+import AuthStackNavigator from './src/navigators/AuthStackNavigator';
+import DashboardNavigator from './src/navigators/DashboardNavigator';
+import FindDoctorNavigator from './src/navigators/FindDoctorStackNavigator';
+import MessageNavigator from './src/navigators/MessageNavigator';
+import PrescriptionNavigator from './src/navigators/PrescriptionNavigator';
 
 
 
+// context imports
 import {AuthContext} from './src/contexts/AuthContext';
 import {useAuth} from './src/hooks/useAuth';
 
