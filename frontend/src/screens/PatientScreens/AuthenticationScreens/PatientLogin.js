@@ -68,7 +68,7 @@ export function PatientLogin({navigation}) {
       <Text>
         Dont have an account?
         <TouchableOpacity
-          onPress={() => this.props.navigation.navigate('Sign up')}>
+          onPress={() => navigation.navigate('Sign up')}>
           <Text style={styles.links}>| Create Account</Text>
         </TouchableOpacity>
       </Text>

@@ -20,12 +20,10 @@ import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
 
 
 // navigator imports
-import {AppointmentNavigator} from './src/navigators/AppointmentStackNavigator';
+// import {AppointmentNavigator} from './src/navigators/AppointmentStackNavigator';
 import {AuthStackNavigator} from './src/navigators/AuthStackNavigator';
 import {DashboardNavigator} from './src/navigators/DashboardNavigator';
-import {FindDoctorNavigator} from './src/navigators/FindDoctorStackNavigator';
-import {MessageNavigator} from './src/navigators/MessageNavigator';
-import {PrescriptionNavigator} from './src/navigators/PrescriptionNavigator';
+import {MainNavigator} from './src/navigators/MainNavigator';
 
 
 // splash scren
@@ -50,10 +48,10 @@ export default function () {
         return <RootStack.Screen name="Splash" component={SplashScreen} />;
       }
       return state.user ? (
-        <RootStack.Screen name={'Dashboard'}>
+        <RootStack.Screen name={'Main'}>
           {() => (
             <UserContext.Provider value={state.user}>
-              <DashboardNavigator />
+              <MainNavigator />
             </UserContext.Provider>
           )}
         </RootStack.Screen>

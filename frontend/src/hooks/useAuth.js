@@ -54,12 +54,31 @@ export function useAuth() {
           await EncryptedStorage.removeItem('user');
           dispatch(createAction('REMOVE_USER'));
         },
-        register: async (email, password) => {
+        register: async (email, password, bio, age, first_name, last_name) => {
+
           await sleep(2000);
-          await axios.post(`${BASE_URL}/patient_register`, {
-            username: email,
-            email,
-            password,
+
+          let data = {
+            bio: bio,
+            age: age,
+            first_name: first_name,
+            last_name: last_name,
+            
+
+          }
+          await axios.post(`${BASE_URL}register_patient/`, {
+            email: email,
+            password: password, 
+            patient_profile: data
+      
+          
+          }) .then(function (response) {
+            // handle success
+            console.log(response);
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error.response);
           });
         },
       }),
