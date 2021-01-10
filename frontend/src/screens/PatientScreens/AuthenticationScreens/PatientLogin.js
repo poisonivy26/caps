@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
 } from 'react-native';
-import globalStyles from '../../styles/GlobalStyle';
+import globalStyles from '../../../../styles/GlobalStyle';
 import RNSecureKeyStore, {ACCESSIBLE} from "react-native-secure-key-store";
 
 class PatientLogin extends Component {

@@ -11,7 +11,7 @@ import {
   Keyboard,
   ScrollView,
 } from 'react-native';
-import globalStyles from '../../styles/GlobalStyle';
+import globalStyles from '../../../../styles/GlobalStyle';
 
 const PatientRegister = ({navigation}) => {
   const [firstName, onChangeFirstName] = React.useState('First Name');
