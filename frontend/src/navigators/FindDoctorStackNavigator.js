@@ -4,9 +4,9 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 
 // Find Doctor Stacks
-import DoctorList from './screens/Patient/DoctorList';
-import DoctorInformation from './screens/Patient/DoctorInformation';
-import FindDoctor from './screens/Patient/FindDoctor';
+import DoctorList from '../screens/PatientScreens/FindDoctorScreens/DoctorList';
+import DoctorInformation from '../screens/PatientScreens/FindDoctorScreens/DoctorInformation';
+import FindDoctor from '../screens/PatientScreens/FindDoctorScreens/FindDoctor';
 
 const FindDoctorStack = createStackNavigator();
 

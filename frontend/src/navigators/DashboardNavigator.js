@@ -1,7 +1,7 @@
 import React from 'react';
-import {createDrawerNavigator} from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import Dashboard from './screens/Dashboard';
+import {Dashboard} from  '../screens/PatientScreens/Dashboard';
 
 
 const DashboardStack = createDrawerNavigator();

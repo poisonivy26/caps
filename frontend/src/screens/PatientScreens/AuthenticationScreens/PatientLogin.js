@@ -9,107 +9,81 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import globalStyles from '../../../../styles/GlobalStyle';
-import RNSecureKeyStore, {ACCESSIBLE} from "react-native-secure-key-store";
+import RNSecureKeyStore, {ACCESSIBLE} from 'react-native-secure-key-store';
 
-class PatientLogin extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {email: '', password: ''};
+import {AuthContext} from '../../../contexts/AuthContext'
 
 
 
-    this.loginUser = this.loginUser.bind(this);
-  }
+export function PatientLogin({navigation}) {
+  const {login} = React.useContext(AuthContext);
+  const [email, setEmail] = React.useState('carl1@gmail.com');
+  const [password, setPassword] = React.useState('1234');
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState('');
 
-  login = () => {
-    alert(this.state.email + ' ' + this.state.password);
-  };
-
-  loginUser ()  {
-
-    const { email, password } = this.state;
-
-    axios.post('http://192.168.1.2:8000/api/auth/login/', {
-      email: email,
-      password: password,
-    }, {
-      'headers': {
-        'Content-Type': 'application/json',
-      }
-    })
-    .then(function (response) {
-      let access_token = response.data.access
-      let refresh_token = response.data.refresh
-      console.log(access_token)
-      RNSecureKeyStore.set("access_token", access_token, {accessible: ACCESSIBLE.ALWAYS_THIS_DEVICE_ONLY})
-    .then((res) => {
-        console.log(res);
-    }, (err) => {
-        console.log(err);
-    });
-    
-      
-      
-    })
-    .catch((error) => console.log( error ) );;
-  }
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <View>
-          <Text style={styles.text}>Sign In</Text>
-        </View>
-
-        <View style={styles.email}>
-          <TextInput
-            style={styles.input}
-            value={this.state.text}
-            onChangeText={(text) => this.setState({email: text})}
-            placeholder="Email"
-          />
-        </View>
-
-        <View style={styles.password}>
-          <TextInput
-            style={styles.input}
-            value={this.state.text}
-            onChangeText={(text) => this.setState({password: text})}
-            placeholder="Password"
-            secureTextEntry={true}
-          />
-        </View>
-
-        {/* sign in button */}
-
-        <View style={styles.signIn}>
-          <TouchableOpacity style={styles.button} onPress={this.loginUser}>
-            <Text style={styles.buttonText}> Sign In </Text>
-          </TouchableOpacity>
-        </View>
-
-        {/* Links */}
-
-        <Text>
-          Dont have an account?
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('Sign up')}>
-            <Text style={styles.links}>| Create Account</Text>
-          </TouchableOpacity>
-        </Text>
-
-        <Text>
-          Are you a Doctor?
-          <TouchableOpacity
-            onPress={() => {
-              alert('Doctor Navigation To do');
-            }}>
-            <Text style={styles.links}>| Click Here</Text>
-          </TouchableOpacity>
-        </Text>
+  return (
+    <View style={styles.container}>
+      <View>
+        <Text style={styles.text}>Sign In</Text>
       </View>
-    );
-  }
+
+      <View style={styles.email}>
+        <TextInput
+          style={styles.input}
+          value={email}
+        onChangeText={setEmail}
+          placeholder="Email"
+        />
+      </View>
+
+      <View style={styles.password}>
+        <TextInput
+          style={styles.input}
+          value={password}
+        onChangeText={setPassword}
+          placeholder="Password"
+          secureTextEntry={true}
+        />
+      </View>
+
+      {/* sign in button */}
+
+      <View style={styles.signIn}>
+        <TouchableOpacity style={styles.button}  onPress={async () => {
+          try {
+            setLoading(true);
+            await login(email, password);
+          } catch (e) {
+            setError(e.message);
+            setLoading(false);
+          }
+        }}>
+          <Text style={styles.buttonText}> Sign In </Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Links */}
+
+      <Text>
+        Dont have an account?
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate('Sign up')}>
+          <Text style={styles.links}>| Create Account</Text>
+        </TouchableOpacity>
+      </Text>
+
+      <Text>
+        Are you a Doctor?
+        <TouchableOpacity
+          onPress={() => {
+            alert('Doctor Navigation To do');
+          }}>
+          <Text style={styles.links}>| Click Here</Text>
+        </TouchableOpacity>
+      </Text>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

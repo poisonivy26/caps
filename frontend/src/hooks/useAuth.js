@@ -39,13 +39,13 @@ export function useAuth() {
     const auth = React.useMemo(
       () => ({
         login: async (email, password) => {
-          const {data} = await axios.post(`${BASE_URL}/login/`, {
-            identifier: email,
+          const {data} = await axios.post(`${BASE_URL}login/`, {
+            email: email,
             password,
           });
           const user = {
-            email: data.user.email,
-            token: data.jwt,
+            email: data.email,
+            token: data.access,
           };
           await EncryptedStorage.setItem('user', JSON.stringify(user));
           dispatch(createAction('SET_USER', user));

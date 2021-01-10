@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 // Messages imports
-import Message from './screens/Patient/Messages';
+import Message from '../screens/PatientScreens/MessageScreens/Messages';
 
 const MessageStack = createStackNavigator();
 export function MessageNavigator() {

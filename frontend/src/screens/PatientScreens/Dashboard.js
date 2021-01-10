@@ -1,10 +1,13 @@
 import React from 'react';
 import {StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
 
-const Dashboard = ( { navigation }) => {
-  function handlePress() {
-    console.log('Pressed');
-  }
+
+import {AuthContext} from '../../contexts/AuthContext';
+
+import {useAuth} from '../../hooks/useAuth';
+
+export function Dashboard  ( { navigation }) {
+  const {logout} = React.useContext(AuthContext);
 
   return (
     <View style={styles.container}>
@@ -13,7 +16,7 @@ const Dashboard = ( { navigation }) => {
             console.log('Pressed Find Doctor');
             navigation.navigate('Find Doctor');
         }}>
-          <Image style={styles.image} source={require('../icons/doctor.png')} />
+          <Image style={styles.image} source={require('../../../icons/doctor.png')} />
         </TouchableOpacity>
       </View>
 
@@ -23,7 +26,7 @@ const Dashboard = ( { navigation }) => {
             console.log('Pressed Appointments');
             navigation.navigate('Create Appointment');
         }}>
-        <Image style={styles.image} source={require('../icons/appointments.png')} />
+        <Image style={styles.image} source={require('../../../icons/appointments.png')} />
         </TouchableOpacity>
       </View>
 
@@ -32,7 +35,7 @@ const Dashboard = ( { navigation }) => {
             console.log('Pressed Prescriptons');
             navigation.navigate('Prescriptions');
         }}>
-        <Image style={styles.image} source={require('../icons/prescription.png')} />
+        <Image style={styles.image} source={require('../../../icons/prescription.png')} />
         </TouchableOpacity>
       </View>
 
@@ -41,9 +44,19 @@ const Dashboard = ( { navigation }) => {
             console.log('Pressed messages');
             navigation.navigate('Messaging');
         }}>
-        <Image style={styles.image} source={require('../icons/messages.png')} />
+        <Image style={styles.image} source={require('../../../icons/messages.png')} />
         </TouchableOpacity>
       </View>
+
+
+      <View style={styles.signIn}>
+        <TouchableOpacity style={styles.button}  onPress={() => { logout();}}>
+          <Text style={styles.buttonText}> Sign out </Text>
+        </TouchableOpacity>
+      </View>
+      
+
+      
     </View>
   );
 };
@@ -106,5 +119,3 @@ const styles = StyleSheet.create({
 
   },
 });
-
-export default Dashboard;
