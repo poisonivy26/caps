@@ -5897,6 +5897,11 @@ react-native-elements@^3.1.0:
     react-native-safe-area-context "^3.1.9"
     react-native-size-matters "^0.3.1"
 
+react-native-encrypted-storage@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-encrypted-storage/-/react-native-encrypted-storage-4.0.1.tgz#9f36344634e01343c387771923a2ca0228a07fdc"
+  integrity sha512-RQf5lbAWNYhAtUbm5eh3eT1TTdH+kL0Mjpv9zImANLnAEoH6ZtqDmIXF+m/E5uAF5d2DN3J0KMh7i2KNPG0JJQ==
+
 react-native-gesture-handler@^1.9.0:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.9.0.tgz#e441b1c0277c3fd4ca3e5c58fdd681e2f0ceddf0"

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
 
-class DoctorAppointment extends Component {
+class DoctorPrescription extends Component {
     constructor(props) {
         super(props);
     }
@@ -14,4 +14,4 @@ class DoctorAppointment extends Component {
 }
 
 
-export default DoctorAppointment;
+export default DoctorPrescription;
