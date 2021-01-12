@@ -49,12 +49,6 @@ export function Dashboard  ( { navigation }) {
       </View>
 
 
-      <View style={styles.signIn}>
-        <TouchableOpacity style={styles.button}  onPress={() => { logout();}}>
-          <Text style={styles.buttonText}> Sign out </Text>
-        </TouchableOpacity>
-      </View>
-      
 
       
     </View>

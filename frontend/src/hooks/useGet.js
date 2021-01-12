@@ -16,7 +16,13 @@ export function useGet(endpoint, initialValue = []) {
       })
       .then(({data}) => {
         setData(data);
-      });
+        console.log(data);
+      })
+      
+          .catch(function (error) {
+            // handle error
+            console.log(error.response);
+          });;
   }, [token, endpoint]);
   return data;
 }
