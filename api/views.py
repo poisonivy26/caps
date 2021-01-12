@@ -177,11 +177,22 @@ class UserAPI(generics.RetrieveAPIView):
     
     
 # get user api doctor
-class UserAPI(generics.RetrieveAPIView):
+class DoctorUserAPI(generics.RetrieveAPIView):
     permission_classes= [
         IsAuthenticated,
     ]
     serializer_class = DoctorRegistrationSerializer
+
+    def get_object(self):
+        return self.request.user
+    
+    
+
+class GetRole(generics.RetrieveAPIView):
+    permission_classes = [
+        IsAuthenticated,
+    ]
+    serializer_class = UserListSerializer
     
     def get_object(self):
         return self.request.user

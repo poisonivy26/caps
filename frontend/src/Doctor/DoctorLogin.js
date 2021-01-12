@@ -8,22 +8,23 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
 } from 'react-native';
-import globalStyles from '../../../../styles/GlobalStyle';
-import RNSecureKeyStore, {ACCESSIBLE} from 'react-native-secure-key-store';
-
-import {AuthContext} from '../../../contexts/AuthContext'
 
 
+import {AuthContext} from '../contexts/AuthContext';
+import Header from './components/Header';
 
-export function PatientLogin({navigation}) {
+export function DoctorLogin({navigation}) {
   const {login} = React.useContext(AuthContext);
-  const [email, setEmail] = React.useState('carl1@gmail.com');
+  const [email, setEmail] = React.useState('ivy1@gmail.com');
   const [password, setPassword] = React.useState('1234');
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState('');
 
   return (
     <View style={styles.container}>
+
+    {/* <Header header="Doctor Sign in" /> */}
+
       <View>
         <Text style={styles.text}>Sign In</Text>
       </View>
@@ -77,7 +78,7 @@ export function PatientLogin({navigation}) {
         Are you a Doctor?
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('Doctor Signin')
+            alert('Doctor Navigation To do');
           }}>
           <Text style={styles.links}>| Click Here</Text>
         </TouchableOpacity>
@@ -122,4 +123,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PatientLogin;
+export default DoctorLogin;

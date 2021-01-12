@@ -41,6 +41,8 @@ const RootStack = createStackNavigator();
 
 
 export default function () {
+
+
     const {auth, state} = useAuth();
 
     function renderScreens() {

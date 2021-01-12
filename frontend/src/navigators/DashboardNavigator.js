@@ -11,7 +11,7 @@ import FindDoctor from '../screens/PatientScreens/FindDoctorScreens/FindDoctor';
 
 import {Button} from 'react-native';
 
-import PatientProfile from '../screens/PatientScreens/PatientProfile';
+import Profile from '../screens/PatientScreens/Profile';
 
 import {AuthContext} from '../contexts/AuthContext';
 
@@ -44,8 +44,8 @@ export function DashboardNavigator() {
       
       />
       <DashboardStack.Screen
-        name="Patient Profile"
-        component={PatientProfile}
+        name="Profile"
+        component={Profile}
       />
     </DashboardStack.Navigator>
   );

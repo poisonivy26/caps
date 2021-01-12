@@ -4,7 +4,7 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 
 import {useGet} from '../hooks/useGet'
 
-export function Profile({}) {
+export function PatientProfile({}) {
     const user = useGet('user/')
     return(
         <View>

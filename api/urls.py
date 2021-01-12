@@ -11,6 +11,8 @@ from .views import (
     UpdateDoctorProfileView,
     HelloView,
     UserAPI,
+    GetRole,
+    DoctorUserAPI,
 )
 
 urlpatterns = [
@@ -35,4 +37,11 @@ urlpatterns = [
     
     # get user
     path('user/', UserAPI.as_view(), name='user'),
+    
+    # get doctor user
+    path('doctor_user/', DoctorUserAPI.as_view(), name='doctor_user'),
+    
+    
+    # get role
+    path('role/', GetRole.as_view(), name='get_role'),
 ]
