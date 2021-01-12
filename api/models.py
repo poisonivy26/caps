@@ -9,6 +9,7 @@ from django.conf import settings
 
 from .managers import CustomUserManager
 
+
 class User(AbstractBaseUser, PermissionsMixin):
 
     ADMIN = 1
@@ -21,8 +22,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         (DOCTOR, 'Doctor')
     )
 
-
-    uid = models.UUIDField(unique=True, editable=False, default=uuid.uuid4, verbose_name='Public identifier')
+    uid = models.UUIDField(unique=True, editable=False,
+                           default=uuid.uuid4, verbose_name='Public identifier')
     email = models.EmailField(unique=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
@@ -31,7 +32,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     modified_date = models.DateTimeField(default=timezone.now)
     created_by = models.EmailField()
     modified_by = models.EmailField()
-    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, blank=True, null=True, default=3)
+    role = models.PositiveSmallIntegerField(
+        choices=ROLE_CHOICES, blank=True, null=True, default=3)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -40,38 +42,51 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
-  
-    
+
     class Meta:
         verbose_name = 'user'
         verbose_name_plural = 'users'
 
+
 class Patient(models.Model):
-    user = models.OneToOneField(User ,on_delete=models.CASCADE,
-                                                        null=True,
-                                                        related_name='patient_profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE,
+                                null=True,
+                                related_name='patient_profile')
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=50, blank=True)
     age = models.CharField(max_length=3)
     bio = models.CharField(max_length=100)
 
-    
     def __str__(self):
         return self.user.email
 
 
-
 class Doctor(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,
-                                                        null=True,
-                                                        related_name='doctor_profile')
+
+    ALLERGISTS = 'Allergists'
+    ANESTHESIOLOGISTS = 'Anesthesiologists'
+    CARDIOLOGISTS = 'Cardiologists'
+    COLON_SURGEONS = 'Colon Surgeons'
+    CRITICAL_CARE_MEDICINE_SPECIALISTS = 'Critical Care Medicine Specialist'
+
+    SPECIALIZATION_CHOICES = [
+        (ALLERGISTS, 'ALLERGISTS'),
+        (ANESTHESIOLOGISTS, 'ANESTHESIOLOGISTS'),
+        (CARDIOLOGISTS, 'CARDIOLOGISTS'),
+        (COLON_SURGEONS, 'COLON_SURGEONS'),
+        (CRITICAL_CARE_MEDICINE_SPECIALISTS, 'CRITICAL_CARE_MEDICINE_SPECIALISTS'),
+
+    ]
+    user = models.OneToOneField(User, on_delete=models.CASCADE,
+                                null=True,
+                                related_name='doctor_profile')
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=50, blank=True)
     age = models.CharField(max_length=3)
     bio = models.CharField(max_length=100)
-    credentials = models.CharField(max_length=20, blank=True, default="M.D")
+    specialization = models.CharField(
+        max_length=50, blank=True, choices=SPECIALIZATION_CHOICES, default=ALLERGISTS)
     education = models.CharField(max_length=20)
-
 
     def __str__(self):
         return self.user.email

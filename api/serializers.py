@@ -23,10 +23,15 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         return auth_user
 
 
+# patient profile serializer
+
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Patient
         fields = ('bio', 'age', 'first_name', 'last_name')
+        
+        
+
 
 
 class PatientRegistrationSerializer(serializers.ModelSerializer):
@@ -57,19 +62,59 @@ class PatientRegistrationSerializer(serializers.ModelSerializer):
 
         return auth_user
 
+
+class ChoiceField(serializers.ChoiceField):
+
+    def to_representation(self, obj):
+        if obj == '' and self.allow_blank:
+            return obj
+        return self._choices[obj]
+
+    def to_internal_value(self, data):
+        # To support inserts with the value
+        if data == '' and self.allow_blank:
+            return ''
+
+        for key, val in self._choices.items():
+            if val == data:
+                return key
+        self.fail('invalid_choice', input=data)
+   
+    
+
+class DoctorProfileSerializer(serializers.ModelSerializer):
+    specialization = serializers.ChoiceField(choices=Doctor.SPECIALIZATION_CHOICES)
+
+    class Meta:
+        model = Doctor
+        fields = ('bio', 'age', 'first_name', 'last_name', 'specialization', 'education')
+
 class DoctorRegistrationSerializer(serializers.ModelSerializer):
+    doctor_profile = DoctorProfileSerializer(required=True)
     class Meta:
         model = User
         fields = (
-            'id',
             'email',
-            'password'
+            'password',
+            'doctor_profile'
         )
 
     def create(self, validated_data):
-        auth_user = User.objects.create_user(**validated_data)
+        auth_user = User.objects.create_user(
+                                            email=validated_data['email'],
+                                            password=validated_data['password'],
+                                            )
         auth_user.role=3
         auth_user.save()
+        
+        doctor_profile = validated_data.pop('doctor_profile')
+        doctor = Doctor.objects.create(user=auth_user,
+                                    bio=doctor_profile['bio'],
+                                    age=doctor_profile['age'],
+                                    first_name=doctor_profile['first_name'],
+                                    last_name=doctor_profile['last_name'],
+                                    specialization=doctor_profile['specialization'],
+                                    education=doctor_profile['education'])
         return auth_user
 
 # serializer user login
@@ -158,7 +203,7 @@ class UpdateDoctorSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'email', 'first_name',
-                    'last_name', 'bio', 'age', 'credentials', 'education']
+                    'last_name', 'bio', 'age', 'specialization', 'education']
 
     def save(self, **kwargs):
         doctor_profile = self.validated_data.pop('doctor_profile')
