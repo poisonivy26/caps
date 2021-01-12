@@ -2,10 +2,10 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 
-import PatientRecentConsultations from './screens/Patient/PatientRecentConsultations';
-import InsuranceCards from './screens/Patient/InsuranceCards';
-import Prescriptions from './screens/Patient/Prescriptions';
-import PrescriptionDetails from './screens/Patient/PrescriptionDetails';
+import PatientRecentConsultations from '../screens/PatientScreens/PrescriptionScreens/PatientRecentConsultations';
+import InsuranceCards from '../screens/PatientScreens/PrescriptionScreens/InsuranceCards';
+import Prescriptions from '../screens/PatientScreens/PrescriptionScreens/Prescriptions';
+import PrescriptionDetails from '../screens/PatientScreens/PrescriptionScreens/PrescriptionDetails';
 
 
 const PrescriptionStack = createStackNavigator();

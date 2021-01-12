@@ -1,15 +1,17 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-// Patient Imports
-import PatientLogin from './screens/Patient/PatientLogin';
-import PatientRegister from './screens/Patient/PatientRegister';
+
+import PatientLogin from '../screens/PatientScreens/AuthenticationScreens/PatientLogin';
+import PatientRegister from '../screens/PatientScreens/AuthenticationScreens/PatientRegister';
 
 const AuthStack = createStackNavigator();
 
 export function AuthStackNavigator() {
-  <AuthStack.Navigator>
+  return(
+    <AuthStack.Navigator>
     <AuthStack.Screen name="Sign in" component={PatientLogin} />
     <AuthStack.Screen name="Sign up" component={PatientRegister} />
-  </AuthStack.Navigator>;
+  </AuthStack.Navigator>
+  )
 }

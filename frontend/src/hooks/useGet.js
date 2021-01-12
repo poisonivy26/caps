@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import {UserContext} from '../contexts/UserContext';
 import {BASE_URL} from '../config';
-
+//
 export function useGet(endpoint, initialValue = []) {
   const {token} = React.useContext(UserContext);
   const [data, setData] = React.useState(initialValue);
@@ -11,12 +11,18 @@ export function useGet(endpoint, initialValue = []) {
     axios
       .get(`${BASE_URL}${endpoint}`, {
         headers: {
-          Authorization: `bearer ${token}`,
+          Authorization: `JWT ${token}`,
         },
       })
       .then(({data}) => {
         setData(data);
-      });
+        console.log(data);
+      })
+      
+          .catch(function (error) {
+            // handle error
+            console.log(error.response);
+          });;
   }, [token, endpoint]);
   return data;
 }

@@ -1,7 +1,12 @@
 import React from 'react';
-import {Image, View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {FlatList, Image, View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 
+import {useGet} from '../../../src/hooks/useGet';
+import {Profile} from '../../components/Profile';
 const PatientProfile = ({navigation}) => {
+
+    const user = useGet('user/')
+  
 
   const onPressRecentConsultations = () => {
     navigation.navigate('Recent Consultations');
@@ -10,22 +15,21 @@ const PatientProfile = ({navigation}) => {
   const onPressInsurance = () => {
     navigation.navigate('Insurance');
   }
+
+  function renderProfile({item: profile}){
+    return <Profile profile={profile} />;
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.header}> User Profile Profile</Text>
-      <Image style={styles.image} source={require('./profile_pictures/patient1.jpeg')} />
-      <Text style={styles.name}> Henry Joseph </Text>
+      <Image style={styles.image} source={require('../../../doctor_images/doctor_profile.png')} />
 
+            <Text>{user.email}</Text>
+             <Text>{user?.patient_profile?.bio}</Text>
+             <Text>{user?.patient_profile?.age}</Text>
+             <Text>{user?.patient_profile?.first_name}</Text>
+             <Text>{user?.patient_profile?.last_name}</Text>
 
-    {/* Profile Information */}
-      <View style={styles.profileInformation}>
-      <Text>age</Text>
-      <Text>blood</Text>
-      <Text>gender</Text>
-      <Text>height</Text>
-      <Text>weight</Text>
-
-      </View>
 
 
       {/* Buttons */}

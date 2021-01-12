@@ -14,7 +14,7 @@ const DoctorInformation = () => {
     <View style={styles.container}>
       <Image
         style={styles.image}
-        source={require('../../doctor_images/doc1.jpg')}
+        source={require('../../../../doctor_images/doc1.jpg')}
       />
       <Text> Dr. Juan Dela Cruz </Text>
 

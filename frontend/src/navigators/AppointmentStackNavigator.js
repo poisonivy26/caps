@@ -4,9 +4,10 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 
 // Appointments Imports
-import CreateAppointment from './screens/Patient/CreateAppointment';
-import AppointmentDatePicker from './screens/Patient/AppointmentDatePicker';
-import AppointmentSummary from './screens/Patient/AppointmentSummary';
+import CreateAppointment from '../screens/PatientScreens/AppointmentScreens/CreateAppointment';
+import AppointmentDatePicker from '../screens/PatientScreens/AppointmentScreens/AppointmentDatePicker';
+import AppointmentSummary from '../screens/PatientScreens/AppointmentScreens/AppointmentSummary';
+
 
 
 const AppointmentStack = createStackNavigator();
