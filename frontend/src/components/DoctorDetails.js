@@ -9,8 +9,8 @@ export function DoctorProfile({}) {
     return(
         <View>
              <Text>{doctor_user.email}</Text>
-             <Text>{doctor_user.doctor_profile?.bio}</Text>
-             <Text>{doctor_user.doctor_profile?.age}</Text>
+             <Text>{doctor_user?.doctor_profile?.bio}</Text>
+             <Text>{doctor_user?.doctor_profile?.age}</Text>
              <Text>{doctor_user?.doctor_profile?.first_name}</Text>
              <Text>{doctor_user?.doctor_profile?.last_name}</Text>
              <Text>{doctor_user?.doctor_profile?.specialization}</Text>

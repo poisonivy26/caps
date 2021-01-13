@@ -1,8 +1,8 @@
 import React from 'react';
 import {TouchableOpacity, Image, StyleSheet, View, Text} from 'react-native';
 
-const DoctorInformation = () => {
-
+const DoctorInformation = ({navigation, route}) => {
+  const { doctorId } = route.params
   const handleOnPressInformation = () => {
     alert('Doctor Personal Information')
   }
@@ -17,7 +17,7 @@ const DoctorInformation = () => {
         source={require('../../../../doctor_images/doc1.jpg')}
       />
       <Text> Dr. Juan Dela Cruz </Text>
-
+    <Text>{JSON.stringify(doctorId)}</Text>
       <TouchableOpacity style={styles.button} onPress={handleOnPressInformation}>
         <Text> Personal Information </Text>
       </TouchableOpacity>

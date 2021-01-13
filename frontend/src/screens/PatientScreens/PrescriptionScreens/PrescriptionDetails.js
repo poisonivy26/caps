@@ -1,8 +1,16 @@
 import React from 'react';
 import {TouchableOpacity, Image, StyleSheet, View, Text} from 'react-native';
 
-const PrescriptionDetails = () => {
 
+import {AuthContext} from '../../../contexts/AuthContext';
+import {useGet} from '../../../hooks/useGet';
+
+const PrescriptionDetails = ({route, navigation}) => {
+
+  
+  const { itemId, otherParam } = route.params;
+  const prescriptions = useGet('get_prescription/')
+  
     const handleOnPress = () => {
         alert('Downloaded prescription')
     }
@@ -13,10 +21,8 @@ const PrescriptionDetails = () => {
         source={require('../../doctor_images/doc1.jpg')}
       />
       <Text> Prescription 1 </Text> */}
-      <Text style={styles.header}>Prescription 1</Text>
-      <Text>Date created: placeholder date here</Text>
-      <Text>Doctor: Juan Delacruz </Text>
-    
+      <Text style={styles.header}>Prescription: {JSON.stringify(itemId)}</Text>
+
 
       <TouchableOpacity
           style={styles.button}

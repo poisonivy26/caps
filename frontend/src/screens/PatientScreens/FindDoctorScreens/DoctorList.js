@@ -1,35 +1,29 @@
 import React, { useState } from "react";
 import { Image, FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
 
-const doctorDataList = [
-  {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "Doctor Juan 1",
-    image: require('../../../../doctor_images/doc1.jpg')
-  },
-  {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "Doctor Juan 2",
-    image: require('../../../../doctor_images/doc2.jpg')
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Doctor Juan 3",
-    image: require('../../../../doctor_images/doc3.jpg')
-  },
-];
+
+import {useGetDoctor} from '../../../hooks/useGetDoctor';
+
+
+
 
 const Item = ({ item, onPress, style }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
-   <Image style={styles.image} source={(item.image)} />
-    <Text style={styles.title}>{item.title}</Text>
+   {/* <Image style={styles.image} source={(item.image)} /> */}
+    <Text style={styles.title}>{item.first_name}</Text>
+    <Text style={styles.title}>{item.bio}</Text>
+    <Text style={styles.title}>{item.specialization}</Text>
+  
    
 
   </TouchableOpacity>
 );
 
-const DoctorList = ( { navigation }) => {
+const DoctorList = ( { route, navigation }) => {
+  const { specialization } = route.params;
+
   const [selectedId, setSelectedId] = useState(null);
+  const doctor = useGetDoctor('specialization/', '?specialization=', specialization)
 
   const renderItem = ({ item }) => {
     const backgroundColor = item.id === selectedId ? "coral" : "white";
@@ -37,7 +31,10 @@ const DoctorList = ( { navigation }) => {
     return (
       <Item
         item={item}
-        onPress={() => navigation.navigate('Doctor Information')}
+        onPress={() => navigation.navigate('Doctor Information', {
+          doctorName: item.first_name,
+
+        })}
         style={{ backgroundColor }}
       />
     );
@@ -46,9 +43,9 @@ const DoctorList = ( { navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={doctorDataList}
+        data={doctor}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => `${item.id}`}
         extraData={selectedId}
       />
     </SafeAreaView>

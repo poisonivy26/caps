@@ -26,6 +26,16 @@ const Profile = ({navigation}) => {
 
   };
 
+  const getRole = (role) => {
+    if (role==2){
+      return <PatientProfile />
+    }
+    if (role==3) {
+      return <DoctorProfile />
+    }
+  }
+
+
 
   return (
     <View style={styles.container}>
@@ -34,22 +44,12 @@ const Profile = ({navigation}) => {
         style={styles.image}
         source={require('../../../doctor_images/doctor_profile.png')}
       />
+
       <View>{role === 2 ? <PatientProfile /> : <DoctorProfile/>}</View>
 
 
       {/* Buttons */}
 
-      <View>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={onPressRecentConsultations}>
-          <Text>Recent Consultations</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.button} onPress={onPressInsurance}>
-          <Text>Insurance Cards</Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 };

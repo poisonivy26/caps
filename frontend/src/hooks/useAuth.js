@@ -81,6 +81,38 @@ export function useAuth() {
             console.log(error.response);
           });
         },
+        doctor_register: async (email, password, bio, age, first_name, last_name,education, specialization) => {
+
+          await sleep(2000);
+
+          let data = {
+            bio: bio,
+            age: age,
+            first_name: first_name,
+            last_name: last_name,
+           
+            education: education,
+            specialization: specialization,
+            
+
+          }
+          await axios.post(`${BASE_URL}register_doctor/`, {
+            email: email,
+            password: password, 
+            doctor_profile: data
+      
+          
+          }) .then(function (response) {
+            // handle success
+            console.log(response);
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error.response);
+          });
+        },
+
+        
       }),
       [],
     );

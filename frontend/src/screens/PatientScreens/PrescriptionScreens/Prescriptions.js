@@ -1,27 +1,14 @@
 import React, { useState } from "react";
 import { Image, FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
 
-const patientPrescriptionList = [
-  {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "Prescription 1",
 
-  },
-  {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "Prescription 2",
+import {AuthContext} from '../../../contexts/AuthContext';
+import {useGet} from '../../../hooks/useGet';
 
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Prescription 3",
-
-  },
-];
 
 const Item = ({ item, onPress, style }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
-    <Text style={styles.title}>{item.title}</Text>
+    <Text style={styles.title}>{item.prescription_name}</Text>
    
 
   </TouchableOpacity>
@@ -29,6 +16,7 @@ const Item = ({ item, onPress, style }) => (
 
 const Prescriptions = ( { navigation }) => {
   const [selectedId, setSelectedId] = useState(null);
+  const prescriptions = useGet('get_prescription/')
 
   const renderItem = ({ item }) => {
     const backgroundColor = item.id === selectedId ? "coral" : "white";
@@ -36,7 +24,12 @@ const Prescriptions = ( { navigation }) => {
     return (
       <Item
         item={item}
-        onPress={() => navigation.navigate('Prescription Details')}
+        onPress={() => {
+
+          navigation.navigate('Prescription Details', {
+            itemId: item.prescription_name,
+          });
+        }}
         style={{ backgroundColor }}
       />
     );
@@ -45,9 +38,9 @@ const Prescriptions = ( { navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={patientPrescriptionList}
+        data={prescriptions}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => `${item.id}`}
         extraData={selectedId}
       />
     </SafeAreaView>

@@ -6,6 +6,8 @@ import PatientLogin from '../screens/PatientScreens/AuthenticationScreens/Patien
 import PatientRegister from '../screens/PatientScreens/AuthenticationScreens/PatientRegister';
 
 import DoctorLogin from '../Doctor/DoctorLogin';
+import DoctorRegistration from '../Doctor/DoctorRegistration';
+
 
 const AuthStack = createStackNavigator();
 
@@ -18,6 +20,7 @@ export function AuthStackNavigator() {
 
     {/* Doctor Login */}
     <AuthStack.Screen name="Doctor Signin" component={DoctorLogin} />
+    <AuthStack.Screen name="Doctor Signup" component={DoctorRegistration} />
   </AuthStack.Navigator>
   )
 }

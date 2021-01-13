@@ -3,29 +3,21 @@ import {Picker} from '@react-native-picker/picker';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import RNSecureKeyStore, {ACCESSIBLE} from "react-native-secure-key-store";
 
+import {useGetDoctor} from '../../../hooks/useGetDoctor';
 
 const FindDoctor = ( {navigation}) => {
-  const [selectDoctor, setSelectedDoctor] = useState('');
+  const [selectDoctor, setSelectedDoctor] = useState('Allergists');
+
 
   const handleValueChange = (itemValue, itemIndex) => {
     setSelectedDoctor(itemValue);
     console.log(itemValue);
   };
 
-  const handleOnPress = () => {
-    RNSecureKeyStore.get("access_token")
-    .then((res) => {
-        console.log("access" + res);
-    }, (err) => {
-        console.log(err);
-    });
-
-    RNSecureKeyStore.get("refresh_token")
-    .then((res) => {
-        console.log("refresh" + res);
-    }, (err) => {
-        console.log(err);
-    });
+  const handleOnPress = (itemValue) => {
+    navigation.navigate('Doctor List', {
+      specialization: selectDoctor,
+    })
  
   }
 
@@ -45,11 +37,11 @@ const FindDoctor = ( {navigation}) => {
         selectedValue={selectDoctor}
         style={styles.dropDown}
         onValueChange={handleValueChange}>
-        <Picker.Item label="Doctor Specialization 1" value="Doc1" />
-        <Picker.Item label="Doctor Specialization 2" value="Doc2" />
-        <Picker.Item label="Doctor Specialization 3" value="Doc3" />
-        <Picker.Item label="Doctor Specialization 4" value="Doc4" />
-        <Picker.Item label="Doctor Specialization 5" value="Doc5" />
+       <Picker.Item label="ALLERGISTS" value="Allergists" />
+        <Picker.Item label="ANESTHESIOLOGISTS" value="Anesthesiologists" />
+        <Picker.Item label="CARDIOLOGISTS" value="Cardiologists" />
+        <Picker.Item label="COLON SURGEONS" value="Colon Surgeons" />
+        <Picker.Item label="CRITICAL CARE MEDICINE SPECIALISTS" value="Critical Care Medicine Specialist" />
       </Picker>
 
         <TouchableOpacity style={styles.button} onPress={handleOnPress}>

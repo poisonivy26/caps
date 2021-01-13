@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'api.apps.ApiConfig',
+    'django_filters',
 
     # cors headers
     'corsheaders',
@@ -76,6 +77,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication'
     ),
+      'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
+    
 }
 
 # Configure the JWT settings

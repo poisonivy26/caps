@@ -24,6 +24,9 @@ export function PatientLogin({navigation}) {
 
   return (
     <View style={styles.container}>
+     <TouchableOpacity onPress={console.log('Hi')}>
+        <Text>Hi</Text>
+      </TouchableOpacity>
       <View>
         <Text style={styles.text}>Sign In</Text>
       </View>
@@ -46,6 +49,7 @@ export function PatientLogin({navigation}) {
           secureTextEntry={true}
         />
       </View>
+     
 
       {/* sign in button */}
 
@@ -54,6 +58,7 @@ export function PatientLogin({navigation}) {
           try {
             setLoading(true);
             await login(email, password);
+            console.log('Pressed')
           } catch (e) {
             setError(e.message);
             setLoading(false);

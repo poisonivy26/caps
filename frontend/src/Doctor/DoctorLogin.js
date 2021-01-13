@@ -21,12 +21,14 @@ export function DoctorLogin({navigation}) {
   const [error, setError] = React.useState('');
 
   return (
+
+
     <View style={styles.container}>
 
     {/* <Header header="Doctor Sign in" /> */}
 
       <View>
-        <Text style={styles.text}>Sign In</Text>
+        <Text style={styles.text}>Doctor Sign In</Text>
       </View>
 
       <View style={styles.email}>
@@ -69,20 +71,11 @@ export function DoctorLogin({navigation}) {
       <Text>
         Dont have an account?
         <TouchableOpacity
-          onPress={() => navigation.navigate('Sign up')}>
+          onPress={() => navigation.navigate('Doctor Signup')}>
           <Text style={styles.links}>| Create Account</Text>
         </TouchableOpacity>
       </Text>
 
-      <Text>
-        Are you a Doctor?
-        <TouchableOpacity
-          onPress={() => {
-            alert('Doctor Navigation To do');
-          }}>
-          <Text style={styles.links}>| Click Here</Text>
-        </TouchableOpacity>
-      </Text>
     </View>
   );
 }

@@ -4,7 +4,8 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from rest_framework import generics
-
+from django_filters import rest_framework as filters
+from django_filters.rest_framework import DjangoFilterBackend
 from .serializers import (
     UserRegistrationSerializer,
     UserLoginSerializer,
@@ -12,11 +13,21 @@ from .serializers import (
     PatientRegistrationSerializer,
     DoctorRegistrationSerializer,
     UpdatePatientSerializer,
-    UpdateDoctorSerializer
+    UpdateDoctorSerializer,
+    PrescriptionSerializer,
+    PrescriptionListSerializer,
+    DoctorProfileSerializer,
     
 )
 
-from .models import User
+from .models import User, Prescription, Patient, Doctor
+
+
+class DoctorFilter(filters.FilterSet):
+    specialization = filters.CharFilter(specialization='data__specialization')
+    class Meta:
+        model = Doctor
+        fields = ['specialization',]
 
 
 # registration view
@@ -196,3 +207,55 @@ class GetRole(generics.RetrieveAPIView):
     
     def get_object(self):
         return self.request.user
+    
+    
+class MakePrescription(generics.CreateAPIView):
+    permission_classes = [
+        IsAuthenticated,
+    ]
+    serializer_class = PrescriptionSerializer
+    
+    
+    def get_object(self):
+        return self.request.user
+    
+    
+class GetPrescriptions(generics.ListAPIView):
+    permission_classes = [
+        IsAuthenticated,
+    ]
+    serializer_class = PrescriptionSerializer
+    # lookup_field = 'user'
+    
+    
+    def get_queryset(self):
+        user = self.request.user
+        return Prescription.objects.filter(owner=user)
+    
+    
+class GetSinglePrescription(generics.RetrieveAPIView):
+    queryset = Prescription.objects.all()
+    permission_classes = [
+        IsAuthenticated,
+    ]
+    serializer_class = PrescriptionSerializer
+    # lookup_field = 'user'
+    
+    
+class DoctorList(generics.ListAPIView):
+    queryset = Doctor.objects.all()
+    permission_classes = [IsAuthenticated,]
+    serializer_class = DoctorProfileSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    
+    filterset_fields = {'specialization'}
+    
+    
+
+class GetSingleDoctor(generics.RetrieveAPIView):
+    queryset=Doctor.objects.all()
+    permission_classes = [AllowAny,]
+    serializer_class = DoctorProfileSerializer
+    # filter_backends = (filters.DjangoFilterBackend,)
+    # filterset_fields = {'pk'}
+    

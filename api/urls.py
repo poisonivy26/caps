@@ -13,6 +13,12 @@ from .views import (
     UserAPI,
     GetRole,
     DoctorUserAPI,
+    MakePrescription,
+    GetPrescriptions,
+    GetSinglePrescription,
+    DoctorList,
+    GetSingleDoctor,
+    
 )
 
 urlpatterns = [
@@ -41,6 +47,17 @@ urlpatterns = [
     # get doctor user
     path('doctor_user/', DoctorUserAPI.as_view(), name='doctor_user'),
     
+    # get single doctor
+    path('doctor/<int:pk>/', GetSingleDoctor.as_view(), name='single_doctor'),
+    
+    # get prescription user
+    path('make_prescription/', MakePrescription.as_view(), name='make_prescription'),
+    path('get_prescription/', GetPrescriptions.as_view(), name='get_prescription'),
+    path('get_single_prescription/<int:pk>/', GetSinglePrescription.as_view(), name='get_single_pres'),
+    
+    
+    # get doctor specs
+    path('specialization/', DoctorList.as_view(), name='get_doctor_specialization'),
     
     # get role
     path('role/', GetRole.as_view(), name='get_role'),
