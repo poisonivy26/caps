@@ -10,7 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.12.1",
+    "@react-native-async-storage/async-storage": "^1.13.2",
     "@react-native-community/datetimepicker": "^3.0.9",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-picker/picker": "^1.9.8",
@@ -22,6 +22,7 @@
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-dropdown-picker": "^3.7.6",
+    "react-native-eject": "^0.1.2",
     "react-native-elements": "^3.1.0",
     "react-native-encrypted-storage": "^4.0.1",
     "react-native-gesture-handler": "^1.9.0",

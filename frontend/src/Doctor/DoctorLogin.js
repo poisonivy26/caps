@@ -57,8 +57,8 @@ export function DoctorLogin({navigation}) {
           try {
             setLoading(true);
             await login(email, password);
-          } catch (e) {
-            setError(e.message);
+          } catch (error) {
+            console.log('DoctorLogin error' + error.message)
             setLoading(false);
           }
         }}>
