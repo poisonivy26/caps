@@ -17,7 +17,6 @@ from .serializers import (
     PrescriptionSerializer,
     PrescriptionListSerializer,
     DoctorProfileSerializer,
-    
 )
 
 from .models import User, Prescription, Patient, Doctor
