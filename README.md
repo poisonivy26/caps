@@ -1,6 +1,10 @@
 # caps
 caps caps caps user registration admin/patient/doctor with roles
 
+## Enter a virtual environment
+## run pip install -r requirements.txt
+
+
 
 ### Register Admin Endpoint
 `api/auth/register/`
