@@ -73,8 +73,6 @@ class PatientRegistrationView(APIView):
 
             return Response(response, status=status_code)
 
-
-
 class DoctorRegistrationView(APIView):
     serializer_class = DoctorRegistrationSerializer
     permission_classes = (AllowAny, )
@@ -194,8 +192,7 @@ class DoctorUserAPI(generics.RetrieveAPIView):
     serializer_class = DoctorRegistrationSerializer
 
     def get_object(self):
-        return self.request.user
-    
+        return self.request.user    
     
 
 class GetRole(generics.RetrieveAPIView):
@@ -225,13 +222,11 @@ class GetPrescriptions(generics.ListAPIView):
     ]
     serializer_class = PrescriptionSerializer
     # lookup_field = 'user'
-    
-    
     def get_queryset(self):
         user = self.request.user
         return Prescription.objects.filter(owner=user)
-    
-    
+
+
 class GetSinglePrescription(generics.RetrieveAPIView):
     queryset = Prescription.objects.all()
     permission_classes = [
@@ -239,17 +234,12 @@ class GetSinglePrescription(generics.RetrieveAPIView):
     ]
     serializer_class = PrescriptionSerializer
     # lookup_field = 'user'
-    
-    
 class DoctorList(generics.ListAPIView):
     queryset = Doctor.objects.all()
     permission_classes = [IsAuthenticated,]
     serializer_class = DoctorProfileSerializer
     filter_backends = (filters.DjangoFilterBackend,)
-    
     filterset_fields = {'specialization'}
-    
-    
 
 class GetSingleDoctor(generics.RetrieveAPIView):
     queryset=Doctor.objects.all()
@@ -257,4 +247,3 @@ class GetSingleDoctor(generics.RetrieveAPIView):
     serializer_class = DoctorProfileSerializer
     # filter_backends = (filters.DjangoFilterBackend,)
     # filterset_fields = {'pk'}
-    

@@ -7,6 +7,4 @@ populator_command = f'INSERT INTO tabl_name(column_1, column_2 \n VALUES first_n
 
 for i in range(10):
     database.append(populator_command)
-    
-    
 print(database)
