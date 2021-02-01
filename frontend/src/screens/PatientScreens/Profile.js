@@ -12,7 +12,7 @@ import {useGet} from '../../hooks/useGet';
 import {PatientProfile} from '../../components/PatientDetails';
 import {DoctorProfile} from '../../components/DoctorDetails';
 
-const Profile = ({navigation}) => {
+export function Profile ({navigation}) {
   const get_role = useGet('role/');
   const user = useGet('user/')
   let role = get_role.role;
@@ -27,13 +27,13 @@ const Profile = ({navigation}) => {
   };
 
   const getRole = (role) => {
-    if (role==2){
-      return <PatientProfile />
+    if (role === 2) {
+      return <PatientProfile />;
     }
-    if (role==3) {
-      return <DoctorProfile />
+    if (role === 3) {
+      return <DoctorProfile />;
     }
-  }
+ ;}
 
 
 
@@ -53,6 +53,7 @@ const Profile = ({navigation}) => {
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {

@@ -38,15 +38,8 @@ export function DashboardNavigator() {
       drawerContent={(props) => (
         <CustomDrawerContent {...props} options={{}} />
       )}>
-      <DashboardStack.Screen
-        name="Home"
-        component={Dashboard}
-      
-      />
-      <DashboardStack.Screen
-        name="Profile"
-        component={Profile}
-      />
+      <DashboardStack.Screen name="Home" component={Dashboard} />
+      <DashboardStack.Screen name="Profile" component={Profile} />
     </DashboardStack.Navigator>
   );
 }

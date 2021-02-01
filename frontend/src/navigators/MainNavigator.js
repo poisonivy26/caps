@@ -2,12 +2,12 @@ import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
 //dashboard
-import { NavigationContainer, DrawerActions } from '@react-navigation/native';
-
+import {DrawerActions} from '@react-navigation/native';
 
 import {Text, Button, TouchableOpacity, Dra} from 'react-native';
 
 import {DashboardNavigator} from './DashboardNavigator';
+
 //find doctor
 import FindDoctor from '../screens/PatientScreens/FindDoctorScreens/FindDoctor';
 import DoctorList from '../screens/PatientScreens/FindDoctorScreens/DoctorList';
@@ -43,9 +43,12 @@ export function MainNavigator({navigation}) {
           headerLeft: () => {
             return (
               <TouchableOpacity
+                // eslint-disable-next-line react-native/no-inline-styles
                 style={{paddingRight: 8}}
-                onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
-               <Text>=====</Text>
+                onPress={() =>
+                  navigation.dispatch(DrawerActions.toggleDrawer())
+                }>
+                <Text>=====</Text>
               </TouchableOpacity>
             );
           },

@@ -90,13 +90,13 @@ class Doctor(models.Model):
 
     def __str__(self):
         return self.user.email
-    
-    
+
+
 class Prescription(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='prescriptions')
+    owner = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True, related_name='prescriptions')
     prescription_name = models.CharField(max_length=100)
     prescription_details = models.CharField(max_length=100)
-    
-    
+
     def __str__(self):
         return self.prescription_name

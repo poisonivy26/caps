@@ -85,13 +85,12 @@ class DoctorProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Doctor
-        
 
         fields = ('bio', 'age', 'first_name', 'last_name',
                   'specialization', 'education', 'id', 'user', 'user_email')
         # fields = '__all__'
     user_email = serializers.SerializerMethodField('get_user_email')
-    
+
     def get_user_email(self, obj):
         return obj.user.email
 
@@ -237,4 +236,4 @@ class PrescriptionListSerializer(serializers.ModelSerializer):
     class Meta:
 
         model = User
-        fields = [  'prescriptions.prescription_name', ]
+        fields = ['prescriptions.prescription_name', ]
